@@ -1,3 +1,4 @@
 supabase/volumes
 caddy/volumes
 **/*.env
+.aider*
