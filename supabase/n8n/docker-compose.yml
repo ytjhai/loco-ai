@@ -3,9 +3,7 @@ version: '3.8'
 include:
   - ../docker/docker-compose.yml
 
-volumes:
-  n8n_storage:
-  redis_storage:
+# Volumes are now defined as bind mounts within the services
 
 x-shared: &shared
   restart: always
@@ -27,7 +25,8 @@ x-shared: &shared
     - supabase-db
     - redis
   volumes:
-    - n8n_storage:/home/node/.n8n
+    # Use a bind mount relative to this compose file
+    - ./volumes/n8n:/home/node/.n8n
   # Depend on the Supabase database service
   depends_on:
     redis:
@@ -40,7 +39,8 @@ services:
     image: redis:6-alpine
     restart: always
     volumes:
-      - redis_storage:/data
+      # Use a bind mount relative to this compose file
+      - ./volumes/redis:/data
     healthcheck:
       test: ['CMD', 'redis-cli', 'ping']
       interval: 5s
