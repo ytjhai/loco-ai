@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 include:
   - ../docker/docker-compose.yml
@@ -13,7 +13,7 @@ x-shared: &shared
     # Use the Supabase database service name
     - DB_POSTGRESDB_HOST=supabase-db
     - DB_POSTGRESDB_PORT=5432
-    - DB_POSTGRESDB_DATABASE=${POSTGRES_DB:-postgres} # Use Supabase default DB name
+    - DB_POSTGRESDB_DATABASE=${POSTGRES_DB:-n8n}
     - DB_POSTGRESDB_USER=${POSTGRES_USER:-postgres} # Use Supabase default user
     - DB_POSTGRESDB_PASSWORD=${POSTGRES_NON_ROOT_PASSWORD}
     - EXECUTIONS_MODE=queue
@@ -42,7 +42,7 @@ services:
       # Use a bind mount relative to this compose file
       - ./volumes/redis:/data
     healthcheck:
-      test: ['CMD', 'redis-cli', 'ping']
+      test: ["CMD", "redis-cli", "ping"]
       interval: 5s
       timeout: 5s
       retries: 10
