@@ -1,4 +1,4 @@
-supabase/volumes
+supabase/**/*/volumes
 caddy/volumes
 **/*.env
 .aider*
